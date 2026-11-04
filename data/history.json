@@ -1,4 +1,935 @@
 {
-  "updatedAt": null,
-  "points": []
+  "updatedAt": "2026-11-03T07:30:00Z",
+  "points": [
+    {
+      "date": "2026-05-01",
+      "subs": 12,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-02",
+      "subs": 20,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-03",
+      "subs": 95,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-04",
+      "subs": 131,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-05",
+      "subs": 178,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-06",
+      "subs": 259,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-07",
+      "subs": 325,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-08",
+      "subs": 416,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-09",
+      "subs": 633,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-10",
+      "subs": 797,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-11",
+      "subs": 939,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-12",
+      "subs": 1127,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-13",
+      "subs": 1278,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-14",
+      "subs": 1404,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-15",
+      "subs": 2107,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-16",
+      "subs": 2635,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-17",
+      "subs": 2946,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-18",
+      "subs": 3349,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-19",
+      "subs": 3820,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-20",
+      "subs": 4201,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-21",
+      "subs": 4739,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-22",
+      "subs": 5942,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-23",
+      "subs": 7344,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-24",
+      "subs": 8343,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-25",
+      "subs": 8829,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-26",
+      "subs": 9027,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-27",
+      "subs": 9171,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-28",
+      "subs": 9338,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-29",
+      "subs": 9536,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-30",
+      "subs": 9825,
+      "source": "studio"
+    },
+    {
+      "date": "2026-05-31",
+      "subs": 10025,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-01",
+      "subs": 10192,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-02",
+      "subs": 10319,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-03",
+      "subs": 10401,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-04",
+      "subs": 10434,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-05",
+      "subs": 10561,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-06",
+      "subs": 10641,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-07",
+      "subs": 10723,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-08",
+      "subs": 10756,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-09",
+      "subs": 10798,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-10",
+      "subs": 10842,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-11",
+      "subs": 10893,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-12",
+      "subs": 10981,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-13",
+      "subs": 11281,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-14",
+      "subs": 11832,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-15",
+      "subs": 12190,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-16",
+      "subs": 12898,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-17",
+      "subs": 13440,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-18",
+      "subs": 13656,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-19",
+      "subs": 13870,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-20",
+      "subs": 14016,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-21",
+      "subs": 14103,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-22",
+      "subs": 14215,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-23",
+      "subs": 14370,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-24",
+      "subs": 14495,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-25",
+      "subs": 14601,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-26",
+      "subs": 14713,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-27",
+      "subs": 14848,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-28",
+      "subs": 14958,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-29",
+      "subs": 15086,
+      "source": "studio"
+    },
+    {
+      "date": "2026-06-30",
+      "subs": 15179,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-01",
+      "subs": 15241,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-02",
+      "subs": 15301,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-03",
+      "subs": 15361,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-04",
+      "subs": 15454,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-05",
+      "subs": 15599,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-06",
+      "subs": 15680,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-07",
+      "subs": 15745,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-08",
+      "subs": 15798,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-09",
+      "subs": 15846,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-10",
+      "subs": 15987,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-11",
+      "subs": 16104,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-12",
+      "subs": 16210,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-13",
+      "subs": 17862,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-14",
+      "subs": 18898,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-15",
+      "subs": 19582,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-16",
+      "subs": 20120,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-17",
+      "subs": 20610,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-18",
+      "subs": 21067,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-19",
+      "subs": 21400,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-20",
+      "subs": 21683,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-21",
+      "subs": 21887,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-22",
+      "subs": 22225,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-23",
+      "subs": 22466,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-24",
+      "subs": 22632,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-25",
+      "subs": 22759,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-26",
+      "subs": 22910,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-27",
+      "subs": 23215,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-28",
+      "subs": 23469,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-29",
+      "subs": 23616,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-30",
+      "subs": 23750,
+      "source": "studio"
+    },
+    {
+      "date": "2026-07-31",
+      "subs": 23972,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-01",
+      "subs": 24100,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-02",
+      "subs": 24254,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-03",
+      "subs": 24533,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-04",
+      "subs": 24649,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-05",
+      "subs": 24739,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-06",
+      "subs": 24800,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-07",
+      "subs": 25075,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-08",
+      "subs": 25299,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-09",
+      "subs": 25661,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-10",
+      "subs": 26099,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-11",
+      "subs": 26372,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-12",
+      "subs": 26626,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-13",
+      "subs": 26784,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-14",
+      "subs": 26932,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-15",
+      "subs": 27158,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-16",
+      "subs": 27398,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-17",
+      "subs": 27676,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-18",
+      "subs": 27842,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-19",
+      "subs": 28014,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-20",
+      "subs": 28688,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-21",
+      "subs": 29302,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-22",
+      "subs": 29715,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-23",
+      "subs": 30171,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-24",
+      "subs": 31538,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-25",
+      "subs": 32390,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-26",
+      "subs": 33146,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-27",
+      "subs": 33763,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-28",
+      "subs": 34476,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-29",
+      "subs": 35185,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-30",
+      "subs": 36027,
+      "source": "studio"
+    },
+    {
+      "date": "2026-08-31",
+      "subs": 36711,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-01",
+      "subs": 37241,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-02",
+      "subs": 37721,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-03",
+      "subs": 38223,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-04",
+      "subs": 39104,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-05",
+      "subs": 40101,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-06",
+      "subs": 41089,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-07",
+      "subs": 42044,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-08",
+      "subs": 42794,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-09",
+      "subs": 43542,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-10",
+      "subs": 44021,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-11",
+      "subs": 44683,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-12",
+      "subs": 45157,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-13",
+      "subs": 45690,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-14",
+      "subs": 46196,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-15",
+      "subs": 46559,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-16",
+      "subs": 46872,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-17",
+      "subs": 47158,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-18",
+      "subs": 47739,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-19",
+      "subs": 48161,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-20",
+      "subs": 48742,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-21",
+      "subs": 49390,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-22",
+      "subs": 49896,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-23",
+      "subs": 50494,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-24",
+      "subs": 50908,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-25",
+      "subs": 51759,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-26",
+      "subs": 52340,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-27",
+      "subs": 52908,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-28",
+      "subs": 53450,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-29",
+      "subs": 53823,
+      "source": "studio"
+    },
+    {
+      "date": "2026-09-30",
+      "subs": 54239,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-01",
+      "subs": 54524,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-02",
+      "subs": 54882,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-03",
+      "subs": 55161,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-04",
+      "subs": 55449,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-05",
+      "subs": 55779,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-06",
+      "subs": 55992,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-07",
+      "subs": 56216,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-08",
+      "subs": 56366,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-09",
+      "subs": 56585,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-10",
+      "subs": 56727,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-11",
+      "subs": 56976,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-12",
+      "subs": 57431,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-13",
+      "subs": 57863,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-14",
+      "subs": 58392,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-15",
+      "subs": 58952,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-16",
+      "subs": 59436,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-17",
+      "subs": 60093,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-18",
+      "subs": 60969,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-19",
+      "subs": 61566,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-20",
+      "subs": 62012,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-21",
+      "subs": 62519,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-22",
+      "subs": 62839,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-23",
+      "subs": 63247,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-24",
+      "subs": 63562,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-25",
+      "subs": 63894,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-26",
+      "subs": 64120,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-27",
+      "subs": 64476,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-28",
+      "subs": 64753,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-29",
+      "subs": 64959,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-30",
+      "subs": 65221,
+      "source": "studio"
+    },
+    {
+      "date": "2026-10-31",
+      "subs": 65573,
+      "source": "studio"
+    },
+    {
+      "date": "2026-11-01",
+      "subs": 65816,
+      "source": "studio"
+    },
+    {
+      "date": "2026-11-03",
+      "subs": 66016,
+      "source": "manual"
+    }
+  ]
 }
