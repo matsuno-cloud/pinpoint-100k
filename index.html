@@ -76,13 +76,18 @@
   .scen > div { background: var(--bg); padding: 10px 12px; }
   .scen .k { font-size: 11px; color: var(--muted); }
   .scen .v { font-size: 15px; font-weight: 600; margin-top: 2px; }
-  .scen .r { font-size: 11px; color: var(--faint); margin-top: 1px; }
+  .scen .r { font-size: 11px; color: var(--muted); margin-top: 2px; }
   .scen .main .v { color: var(--accent); }
 
-  .live { margin-top: 12px; font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .pill { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 99px; border: 1px solid currentColor; }
-  .pill.good { color: var(--good); }
-  .pill.warn { color: var(--warn); }
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; margin-top: 18px; }
+  .flow .step .k { font-size: 11px; color: var(--muted); }
+  .flow .step .v { font-size: 17px; font-weight: 600; margin-top: 3px; letter-spacing: -.01em; }
+  .flow .step.main .v { color: var(--warn); }
+  .flow .gap { display: flex; flex-direction: column; align-items: center; font-size: 10.5px; color: var(--faint); min-width: 64px; }
+  .flow .gap i { display: block; width: 100%; height: 1px; background: var(--line); margin-top: 4px; position: relative; }
+  .flow .gap i::after { content: ""; position: absolute; right: -1px; top: -3px; border: 3.5px solid transparent; border-left: 5px solid var(--faint); }
+  .flow .step.main { text-align: right; }
+  .scen .r2 { font-size: 10.5px; color: var(--faint); }
 
   .chart { margin-top: 16px; position: relative; }
   .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -90,6 +95,7 @@
   .legend { display: flex; gap: 14px; font-size: 11px; color: var(--muted); margin-top: 6px; }
   .legend span::before { content: ""; display: inline-block; width: 14px; height: 0; vertical-align: middle; margin-right: 6px; border-top: 2px solid var(--fg); }
   .legend .proj::before { border-top: 2px dashed var(--accent); }
+  .legend .alt::before { border-top: 1px dashed var(--muted); }
   .legend .lv::before { border-top: 1px dashed var(--warn); }
 
   footer { margin-top: 10px; font-size: 10.5px; color: var(--faint); display: flex; justify-content: space-between; }
@@ -97,7 +103,13 @@
 
   @media (max-width: 380px) {
     body { padding: 16px; }
-    .scen .r { display: none; }
+    .scen .r2 { display: none; }
+    .scen > div { padding: 9px 9px; }
+    .scen .r { font-size: 10px; }
+    .flow { grid-template-columns: 1fr auto 1fr; gap: 6px; }
+    .flow .step .k { font-size: 10px; }
+    .flow .step .v { font-size: 14px; white-space: nowrap; }
+    .flow .gap { min-width: 36px; }
   }
 </style>
 </head>
@@ -116,16 +128,20 @@
   </section>
 
   <section class="scen" id="scen">
-    <div><div class="k">楽観</div><div class="v" id="s-opt">—</div><div class="r" id="r-opt"></div></div>
-    <div class="main"><div class="k">標準</div><div class="v" id="s-std">—</div><div class="r" id="r-std"></div></div>
-    <div><div class="k">慎重</div><div class="v" id="s-pes">—</div><div class="r" id="r-pes"></div></div>
+    <div><div class="k">楽観</div><div class="v" id="s-opt">—</div><div class="r" id="l-opt"></div><div class="r2" id="r-opt"></div></div>
+    <div class="main"><div class="k">標準</div><div class="v" id="s-std">—</div><div class="r" id="l-std"></div><div class="r2" id="r-std"></div></div>
+    <div><div class="k">悲観</div><div class="v" id="s-pes">—</div><div class="r" id="l-pes"></div><div class="r2" id="r-pes"></div></div>
   </section>
 
-  <div class="live" id="live"></div>
+  <section class="flow">
+    <div class="step"><div class="k">10万人達成・チケット販売</div><div class="v" id="f-ticket">—</div></div>
+    <div class="gap"><span id="f-gap">約1か月</span><i></i></div>
+    <div class="step main"><div class="k">本番候補（土日）</div><div class="v" id="f-live">—</div></div>
+  </section>
 
   <section class="chart">
     <svg id="svg" viewBox="0 0 720 240" role="img" aria-label="登録者数の推移と予測"></svg>
-    <div class="legend"><span>実績</span><span class="proj">予測（標準）</span><span class="lv">本番予定日</span></div>
+    <div class="legend"><span>実績</span><span class="proj">標準</span><span class="alt">楽観・悲観</span><span class="lv">本番候補</span></div>
   </section>
 
   <footer><span id="updated"></span><span>直近のペースから毎日自動計算</span></footer>
@@ -138,6 +154,16 @@
   const DOW = ["日", "月", "火", "水", "木", "金", "土"];
   const parse = (s) => new Date(s + "T00:00:00+09:00");
   const md = (d) => `${d.getMonth() + 1}/${d.getDate()}`;
+  const wd = (d) => `${md(d)}(${DOW[d.getDay()]})`;
+  // 到達日から offset 日後以降で最初の土日
+  const weekend = (d) => {
+    const base = new Date(d.getTime() + LIVE_OFFSET * DAY);
+    const sun = new Date(base.getTime() + ((7 - base.getDay()) % 7) * DAY);
+    return { sat: new Date(sun.getTime() - DAY), sun };
+  };
+  const wkLabel = (w) => w.sat.getMonth() === w.sun.getMonth()
+    ? `${md(w.sat)}(土)・${w.sun.getDate()}(日)` : `${md(w.sat)}(土)・${md(w.sun)}(日)`;
+  let LIVE_OFFSET = 30;
   const ymd = (d) => `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 
   let config, history;
@@ -153,6 +179,7 @@
   }
 
   const goal = config.goal || 100000;
+  LIVE_OFFSET = config.liveOffsetDays ?? 30;
   const pts = (history.points || [])
     .map((p) => ({ t: parse(p.date).getTime(), v: p.subs }))
     .sort((a, b) => a.t - b.t);
@@ -214,17 +241,16 @@
     const e = eta(rate);
     $("s-" + id).textContent = reached ? "—" : e ? md(e) : "—";
     $("r-" + id).textContent = rate > 0 ? `+${fmt(rate)}/日` : "";
+    $("l-" + id).textContent = !reached && e ? "本番 " + wkLabel(weekend(e)) : "";
   };
   put("opt", opt); put("std", std); put("pes", pes);
 
-  // 本番日との比較
-  if (config.liveDate && eStd && !reached) {
-    const live = parse(config.liveDate);
-    const diff = Math.round((live - eStd) / DAY);
-    const label = config.liveLabel || "本番予定";
-    $("live").innerHTML = diff >= 0
-      ? `${label} <b style="color:var(--fg)">${md(live)}</b><span class="pill good">本番の${diff}日前に到達見込み</span>`
-      : `${label} <b style="color:var(--fg)">${md(live)}</b><span class="pill warn">到達は本番の${-diff}日後の見込み</span>`;
+  // チケット販売開始 → 本番候補
+  const tStart = reached ? new Date(last.t) : eStd;
+  if (tStart) {
+    $("f-ticket").textContent = wd(tStart);
+    $("f-live").textContent = wkLabel(weekend(tStart));
+    $("f-gap").textContent = `約${Math.round(LIVE_OFFSET / 30)}か月`;
   }
 
   // チャート
@@ -239,8 +265,9 @@
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   const showFrom = last.t - (config.chartDays || 90) * DAY;
   const real = pts.filter((p) => p.t >= showFrom);
-  const liveT = config.liveDate ? parse(config.liveDate).getTime() : null;
-  let endT = Math.max(eStd ? eStd.getTime() : last.t, liveT || 0, last.t) + 7 * DAY;
+  const liveT = tStart ? weekend(tStart).sat.getTime() : null;
+  const eOpt = reached ? null : eta(opt), ePes = reached ? null : eta(pes);
+  let endT = Math.max(eStd ? eStd.getTime() : last.t, ePes ? ePes.getTime() : 0, liveT || 0, last.t) + 7 * DAY;
   endT = Math.min(endT, last.t + 365 * DAY);
   const minV = Math.min(...real.map((p) => p.v));
   const maxV = Math.max(goal, cur);
@@ -273,7 +300,7 @@
   if (liveT && liveT <= endT) {
     el("line", { x1: sx(liveT), x2: sx(liveT), y1: T, y2: H - B, stroke: "var(--warn)", "stroke-width": 1, "stroke-dasharray": "3 3" });
     const lt = el("text", { x: sx(liveT) - 5, y: H - B - 6, "text-anchor": "end", style: "fill:var(--warn)" });
-    lt.textContent = (config.liveLabel || "本番") + " " + md(new Date(liveT));
+    lt.textContent = "本番候補 " + md(new Date(liveT));
   }
   // 実績エリア
   const linePath = real.map((p, i) => `${i ? "L" : "M"}${sx(p.t).toFixed(1)},${sy(p.v).toFixed(1)}`).join("");
@@ -282,11 +309,32 @@
   el("stop", { offset: "1", "stop-color": "var(--accent)", "stop-opacity": "0" }, grad);
   el("path", { d: `${linePath}L${sx(last.t)},${H - B}L${sx(real[0].t)},${H - B}Z`, fill: "url(#g)" });
   el("path", { d: linePath, fill: "none", stroke: "var(--fg)", "stroke-width": 1.8, "stroke-linejoin": "round", "stroke-linecap": "round" });
+  // 楽観〜悲観の幅
+  if (!reached && eOpt && ePes) {
+    const px = Math.min(sx(ePes.getTime()), W - R);
+    const py = sx(ePes.getTime()) > W - R ? sy(cur + pes * ((endT - last.t) / DAY)) : sy(goal);
+    el("path", { d: `M${sx(last.t)},${sy(cur)}L${sx(eOpt.getTime())},${sy(goal)}L${px},${py}Z`, fill: "var(--accent-soft)", stroke: "none" });
+    for (const [e, name] of [[eOpt, "楽観"], [ePes, "悲観"]]) {
+      const x2 = Math.min(sx(e.getTime()), W - R);
+      const y2 = sx(e.getTime()) > W - R ? py : sy(goal);
+      el("path", { d: `M${sx(last.t)},${sy(cur)}L${x2},${y2}`, stroke: "var(--muted)", "stroke-width": 1, "stroke-dasharray": "2 3", fill: "none" });
+      const nearStd = eStd && Math.abs(x2 - sx(eStd.getTime())) < 34;
+      if (x2 === sx(e.getTime()) && !nearStd) {
+        el("circle", { cx: x2, cy: y2, r: 2.5, fill: "var(--muted)" });
+        const edge = x2 > W - R - 40;
+        const lab = el("text", { x: edge ? x2 + 2 : x2, y: y2 - 7, "text-anchor": edge ? "end" : "middle" });
+        lab.textContent = `${name} ${md(e)}`;
+      }
+    }
+  }
   // 予測ライン
   if (eStd && !reached) {
     el("path", { d: `M${sx(last.t)},${sy(cur)}L${sx(eStd.getTime())},${sy(goal)}`, stroke: "var(--accent)", "stroke-width": 1.8, "stroke-dasharray": "5 4", fill: "none" });
     el("circle", { cx: sx(eStd.getTime()), cy: sy(goal), r: 4.5, fill: "var(--accent)" });
     el("circle", { cx: sx(eStd.getTime()), cy: sy(goal), r: 9, fill: "var(--accent-soft)" });
+    const eNear = sx(eStd.getTime()) > W - R - 110;
+    const et = el("text", { x: sx(eStd.getTime()) + (eNear ? -8 : 8), y: sy(goal) + 26, "text-anchor": eNear ? "end" : "start", style: "fill:var(--accent);font-weight:600" });
+    et.textContent = "チケット販売開始 " + md(eStd);
   }
   el("circle", { cx: sx(last.t), cy: sy(cur), r: 3.5, fill: "var(--bg)", stroke: "var(--fg)", "stroke-width": 1.8 });
   }
