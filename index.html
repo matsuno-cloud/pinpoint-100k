@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Road to 100K</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #111214;
+    --muted: #7a7d85;
+    --faint: #b9bcc3;
+    --line: #ececee;
+    --track: #f1f2f4;
+    --accent: #2b5cff;
+    --accent-soft: rgba(43, 92, 255, .10);
+    --good: #12a150;
+    --warn: #d97706;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #191919;
+      --fg: #f3f4f6;
+      --muted: #9a9ea8;
+      --faint: #5b5f68;
+      --line: #2a2b2e;
+      --track: #26272a;
+      --accent: #7f9cff;
+      --accent-soft: rgba(127, 156, 255, .14);
+      --good: #34d399;
+      --warn: #fbbf24;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #191919; --fg: #f3f4f6; --muted: #9a9ea8; --faint: #5b5f68;
+    --line: #2a2b2e; --track: #26272a; --accent: #7f9cff;
+    --accent-soft: rgba(127, 156, 255, .14); --good: #34d399; --warn: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+    font-feature-settings: "tnum" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    padding: 20px 20px 16px;
+    max-width: 760px;
+  }
+  .eyebrow {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600;
+  }
+  .eyebrow .ch { letter-spacing: .04em; text-transform: none; font-weight: 500; }
+
+  .hero { margin-top: 14px; }
+  .hero .label { font-size: 12px; color: var(--muted); }
+  .hero .date {
+    font-size: clamp(30px, 8vw, 44px); font-weight: 700; letter-spacing: -.02em;
+    line-height: 1.1; margin-top: 2px;
+  }
+  .hero .date .dow { font-size: .5em; font-weight: 500; color: var(--muted); margin-left: 6px; letter-spacing: 0; }
+  .hero .sub { margin-top: 6px; font-size: 13px; color: var(--muted); }
+  .hero .sub b { color: var(--fg); font-weight: 600; }
+
+  .progress { margin-top: 16px; }
+  .progress .row { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--muted); }
+  .progress .row .now { color: var(--fg); font-weight: 600; font-size: 15px; }
+  .bar { height: 4px; background: var(--track); border-radius: 99px; margin-top: 8px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width .8s cubic-bezier(.2,.8,.2,1); }
+
+  .scen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 18px;
+          background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .scen > div { background: var(--bg); padding: 10px 12px; }
+  .scen .k { font-size: 11px; color: var(--muted); }
+  .scen .v { font-size: 15px; font-weight: 600; margin-top: 2px; }
+  .scen .r { font-size: 11px; color: var(--faint); margin-top: 1px; }
+  .scen .main .v { color: var(--accent); }
+
+  .live { margin-top: 12px; font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .pill { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 99px; border: 1px solid currentColor; }
+  .pill.good { color: var(--good); }
+  .pill.warn { color: var(--warn); }
+
+  .chart { margin-top: 16px; position: relative; }
+  .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart text { font-size: 10px; fill: var(--muted); font-family: inherit; }
+  .legend { display: flex; gap: 14px; font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .legend span::before { content: ""; display: inline-block; width: 14px; height: 0; vertical-align: middle; margin-right: 6px; border-top: 2px solid var(--fg); }
+  .legend .proj::before { border-top: 2px dashed var(--accent); }
+  .legend .lv::before { border-top: 1px dashed var(--warn); }
+
+  footer { margin-top: 10px; font-size: 10.5px; color: var(--faint); display: flex; justify-content: space-between; }
+  .empty { margin-top: 18px; font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 380px) {
+    body { padding: 16px; }
+    .scen .r { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="eyebrow"><span>Road to 100K</span><span class="ch" id="ch">ピンポイント団</span></div>
+
+  <section class="hero">
+    <div class="label">このペースでいくと、10万人突破は</div>
+    <div class="date" id="eta">—</div>
+    <div class="sub" id="sub">データを読み込み中…</div>
+  </section>
+
+  <section class="progress">
+    <div class="row"><span class="now" id="now">—</span><span id="goal">/ 100,000</span></div>
+    <div class="bar"><i id="bar" style="width:0"></i></div>
+  </section>
+
+  <section class="scen" id="scen">
+    <div><div class="k">楽観</div><div class="v" id="s-opt">—</div><div class="r" id="r-opt"></div></div>
+    <div class="main"><div class="k">標準</div><div class="v" id="s-std">—</div><div class="r" id="r-std"></div></div>
+    <div><div class="k">慎重</div><div class="v" id="s-pes">—</div><div class="r" id="r-pes"></div></div>
+  </section>
+
+  <div class="live" id="live"></div>
+
+  <section class="chart">
+    <svg id="svg" viewBox="0 0 720 240" role="img" aria-label="登録者数の推移と予測"></svg>
+    <div class="legend"><span>実績</span><span class="proj">予測（標準）</span><span class="lv">本番予定日</span></div>
+  </section>
+
+  <footer><span id="updated"></span><span>直近のペースから毎日自動計算</span></footer>
+
+<script>
+(async function () {
+  const $ = (id) => document.getElementById(id);
+  const DAY = 86400000;
+  const fmt = (n) => Math.round(n).toLocaleString("ja-JP");
+  const DOW = ["日", "月", "火", "水", "木", "金", "土"];
+  const parse = (s) => new Date(s + "T00:00:00+09:00");
+  const md = (d) => `${d.getMonth() + 1}/${d.getDate()}`;
+  const ymd = (d) => `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+
+  let config, history;
+  try {
+    const bust = "?t=" + Date.now();
+    [config, history] = await Promise.all([
+      fetch("data/config.json" + bust).then((r) => r.json()),
+      fetch("data/history.json" + bust).then((r) => r.json()),
+    ]);
+  } catch (e) {
+    $("sub").textContent = "データを読み込めませんでした";
+    return;
+  }
+
+  const goal = config.goal || 100000;
+  const pts = (history.points || [])
+    .map((p) => ({ t: parse(p.date).getTime(), v: p.subs }))
+    .sort((a, b) => a.t - b.t);
+
+  $("goal").textContent = "/ " + fmt(goal);
+  if (config.channelName) $("ch").textContent = config.channelName;
+  if (history.updatedAt) {
+    const u = new Date(history.updatedAt);
+    $("updated").textContent = `最終更新 ${u.getMonth() + 1}/${u.getDate()} ${String(u.getHours()).padStart(2, "0")}:${String(u.getMinutes()).padStart(2, "0")}`;
+  }
+
+  if (pts.length < 2) {
+    $("sub").textContent = "データを集めています。数日分たまると予測が表示されます。";
+    if (pts.length) { $("now").textContent = fmt(pts[0].v) + "人"; $("bar").style.width = Math.min(100, pts[0].v / goal * 100) + "%"; }
+    return;
+  }
+
+  const last = pts[pts.length - 1];
+  const cur = last.v;
+
+  // 直近 n 日の回帰直線の傾き（人/日）
+  function slope(days) {
+    const from = last.t - days * DAY;
+    const s = pts.filter((p) => p.t >= from);
+    if (s.length < 2) return null;
+    const xs = s.map((p) => (p.t - from) / DAY), ys = s.map((p) => p.v);
+    const mx = xs.reduce((a, b) => a + b) / xs.length, my = ys.reduce((a, b) => a + b) / ys.length;
+    let num = 0, den = 0;
+    xs.forEach((x, i) => { num += (x - mx) * (ys[i] - my); den += (x - mx) ** 2; });
+    return den ? num / den : null;
+  }
+  const windows = (config.windows || [7, 14, 28, 56]).map((d) => ({ d, s: slope(d) })).filter((w) => w.s !== null);
+  const stdWin = config.standardWindow || 28;
+  const std = (windows.find((w) => w.d === stdWin) || windows[windows.length - 1]).s;
+  const all = windows.map((w) => w.s);
+  const opt = Math.max(...all), pes = Math.min(...all);
+
+  const eta = (rate) => (rate > 0 ? new Date(last.t + Math.ceil((goal - cur) / rate) * DAY) : null);
+  const reached = cur >= goal;
+  const eStd = reached ? null : eta(std);
+
+  // Hero
+  $("now").textContent = fmt(cur) + "人";
+  requestAnimationFrame(() => ($("bar").style.width = Math.min(100, (cur / goal) * 100) + "%"));
+  if (reached) {
+    $("eta").innerHTML = "達成済み";
+    $("sub").innerHTML = `現在 <b>${fmt(cur)}</b>人`;
+  } else if (eStd) {
+    $("eta").innerHTML = `${ymd(eStd)}<span class="dow">(${DOW[eStd.getDay()]})</span>`;
+    const days = Math.round((eStd - parse(new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10))) / DAY);
+    $("sub").innerHTML = `あと <b>${fmt(goal - cur)}</b>人 ・ 1日平均 <b>+${fmt(std)}</b>人 ・ 約<b>${days}</b>日後`;
+  } else {
+    $("eta").textContent = "予測できません";
+    $("sub").textContent = "直近のペースが横ばいか減少しています";
+  }
+
+  // シナリオ
+  const put = (id, rate) => {
+    const e = eta(rate);
+    $("s-" + id).textContent = reached ? "—" : e ? md(e) : "—";
+    $("r-" + id).textContent = rate > 0 ? `+${fmt(rate)}/日` : "";
+  };
+  put("opt", opt); put("std", std); put("pes", pes);
+
+  // 本番日との比較
+  if (config.liveDate && eStd && !reached) {
+    const live = parse(config.liveDate);
+    const diff = Math.round((live - eStd) / DAY);
+    const label = config.liveLabel || "本番予定";
+    $("live").innerHTML = diff >= 0
+      ? `${label} <b style="color:var(--fg)">${md(live)}</b><span class="pill good">本番の${diff}日前に到達見込み</span>`
+      : `${label} <b style="color:var(--fg)">${md(live)}</b><span class="pill warn">到達は本番の${-diff}日後の見込み</span>`;
+  }
+
+  // チャート
+  const svg = $("svg");
+  let rt;
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  draw();
+  function draw() {
+  svg.innerHTML = "";
+  const W = Math.max(280, Math.round(svg.getBoundingClientRect().width || 720));
+  const H = Math.round(Math.min(260, Math.max(170, W * 0.36))), L = 40, R = 6, T = 14, B = 22;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const showFrom = last.t - (config.chartDays || 90) * DAY;
+  const real = pts.filter((p) => p.t >= showFrom);
+  const liveT = config.liveDate ? parse(config.liveDate).getTime() : null;
+  let endT = Math.max(eStd ? eStd.getTime() : last.t, liveT || 0, last.t) + 7 * DAY;
+  endT = Math.min(endT, last.t + 365 * DAY);
+  const minV = Math.min(...real.map((p) => p.v));
+  const maxV = Math.max(goal, cur);
+  const pad = (maxV - minV) * 0.08 || 100;
+  const y0 = minV - pad, y1 = maxV + pad;
+  const sx = (t) => L + ((t - real[0].t) / (endT - real[0].t)) * (W - L - R);
+  const sy = (v) => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  const ns = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent = svg) => { const n = document.createElementNS(ns, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); parent.appendChild(n); return n; };
+
+  // 目盛り
+  const step = Math.pow(10, Math.floor(Math.log10((y1 - y0) / 3)));
+  const nice = [1, 2, 5].map((m) => m * step).find((s) => (y1 - y0) / s <= 5) || step * 10;
+  for (let v = Math.ceil(y0 / nice) * nice; v <= y1; v += nice) {
+    el("line", { x1: L, x2: W - R, y1: sy(v), y2: sy(v), stroke: "var(--line)", "stroke-width": 1 });
+    const t = el("text", { x: L - 8, y: sy(v) + 3, "text-anchor": "end" });
+    t.textContent = v >= 10000 ? (v / 10000).toFixed(v % 10000 ? 1 : 0) + "万" : fmt(v);
+  }
+  // 月の目盛り
+  const d0 = new Date(real[0].t);
+  for (let d = new Date(d0.getFullYear(), d0.getMonth() + 1, 1); d.getTime() <= endT; d = new Date(d.getFullYear(), d.getMonth() + 1, 1)) {
+    const t = el("text", { x: sx(d.getTime()), y: H - 6, "text-anchor": "middle" });
+    t.textContent = d.getMonth() === 0 ? `${d.getFullYear()}/1` : `${d.getMonth() + 1}月`;
+  }
+  // 目標ライン
+  el("line", { x1: L, x2: W - R, y1: sy(goal), y2: sy(goal), stroke: "var(--faint)", "stroke-width": 1 });
+  const gl = el("text", { x: L + 4, y: sy(goal) - 5, "text-anchor": "start", style: "font-weight:600;fill:var(--fg)" });
+  gl.textContent = "100,000";
+  // 本番日
+  if (liveT && liveT <= endT) {
+    el("line", { x1: sx(liveT), x2: sx(liveT), y1: T, y2: H - B, stroke: "var(--warn)", "stroke-width": 1, "stroke-dasharray": "3 3" });
+    const lt = el("text", { x: sx(liveT) - 5, y: H - B - 6, "text-anchor": "end", style: "fill:var(--warn)" });
+    lt.textContent = (config.liveLabel || "本番") + " " + md(new Date(liveT));
+  }
+  // 実績エリア
+  const linePath = real.map((p, i) => `${i ? "L" : "M"}${sx(p.t).toFixed(1)},${sy(p.v).toFixed(1)}`).join("");
+  const grad = el("linearGradient", { id: "g", x1: 0, x2: 0, y1: 0, y2: 1 }, el("defs", {}));
+  el("stop", { offset: "0", "stop-color": "var(--accent)", "stop-opacity": ".18" }, grad);
+  el("stop", { offset: "1", "stop-color": "var(--accent)", "stop-opacity": "0" }, grad);
+  el("path", { d: `${linePath}L${sx(last.t)},${H - B}L${sx(real[0].t)},${H - B}Z`, fill: "url(#g)" });
+  el("path", { d: linePath, fill: "none", stroke: "var(--fg)", "stroke-width": 1.8, "stroke-linejoin": "round", "stroke-linecap": "round" });
+  // 予測ライン
+  if (eStd && !reached) {
+    el("path", { d: `M${sx(last.t)},${sy(cur)}L${sx(eStd.getTime())},${sy(goal)}`, stroke: "var(--accent)", "stroke-width": 1.8, "stroke-dasharray": "5 4", fill: "none" });
+    el("circle", { cx: sx(eStd.getTime()), cy: sy(goal), r: 4.5, fill: "var(--accent)" });
+    el("circle", { cx: sx(eStd.getTime()), cy: sy(goal), r: 9, fill: "var(--accent-soft)" });
+  }
+  el("circle", { cx: sx(last.t), cy: sy(cur), r: 3.5, fill: "var(--bg)", stroke: "var(--fg)", "stroke-width": 1.8 });
+  }
+})();
+</script>
+</body>
+</html>

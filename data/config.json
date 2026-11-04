@@ -1,0 +1,10 @@
+{
+  "channelName": "ピンポイント団",
+  "channelId": "UC_hsphnT_QAt5V2tnKFTk1w",
+  "goal": 100000,
+  "liveDate": "2027-01-23",
+  "liveLabel": "本番（仮）",
+  "chartDays": 90,
+  "windows": [7, 14, 28, 56],
+  "standardWindow": 28
+}
